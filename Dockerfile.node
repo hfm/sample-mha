@@ -1,0 +1,18 @@
+FROM centos:7
+
+RUN groupadd -r mysql && useradd -r -g mysql mysql
+RUN rpm --import http://repo.mysql.com/RPM-GPG-KEY-mysql
+RUN rpm -i http://repo.mysql.com/yum/mysql-5.7-community/el/7/x86_64/mysql57-community-release-el7-10.noarch.rpm
+RUN yum install -y perl-DBD-mysql mysql-community-server
+
+COPY rpm/*.rpm /usr/local/src/
+RUN rpm -i /usr/local/src/mha4mysql-node-0.58-0.el7.centos.noarch.rpm
+
+COPY my.cnf /etc/my.cnf.d/node.cnf
+RUN ln -sfn /dev/stdout /var/log/mysqld.log
+
+RUN mysqld --initialize
+RUN chown -R mysql:mysql /var/lib/mysql
+USER mysql
+WORKDIR /var/lib/mysql
+CMD ["mysqld"]

@@ -1,0 +1,22 @@
+[server default]
+ssh_options='-i /root/.ssh/id_ecdsa'
+ping_type=INSERT
+
+user=mha
+password=mh@4mysql
+
+repl_user=repl
+repl_password=replic@ti0n
+
+#master_ip_failover_script=
+#master_ip_online_change_script=
+#report_script=
+
+[server1]
+hostname=sample-mha_node_1
+
+[server2]
+hostname=sample-mha_node_2
+
+[server3]
+hostname=sample-mha_node_3

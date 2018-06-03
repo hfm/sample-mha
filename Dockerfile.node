@@ -9,7 +9,7 @@ COPY rpm/*.rpm /usr/local/src/
 RUN rpm -i /usr/local/src/mha4mysql-node-0.58-0.el7.centos.noarch.rpm
 COPY id_ecdsa* /root/.ssh/
 
-COPY my.cnf /etc/my.cnf.d/node.cnf
+COPY my.cnf /etc/my.cnf
 RUN ln -sfn /dev/stdout /var/log/mysqld.log
 
 RUN mysqld --initialize

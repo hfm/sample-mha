@@ -6,6 +6,6 @@ COPY rpm/*.rpm /usr/local/src/
 RUN rpm -i /usr/local/src/mha4mysql-node-0.58-0.el7.centos.noarch.rpm /usr/local/src/mha4mysql-manager-0.58-0.el7.centos.noarch.rpm
 COPY id_ecdsa* /root/.ssh/
 
-COPY app.cnf /etc/masterha/app.cnf
+COPY masterha_default.cnf /etc/masterha_default.cnf
 
-CMD ["masterha_manager", "--conf", "/etc/masterha/app.cnf"]
+CMD ["masterha_manager", "--conf", "/etc/masterha_default.cnf"]

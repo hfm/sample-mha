@@ -5,6 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.node
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_USER: mha
+      MYSQL_PASSWORD: mh@4mysql
   manager:
     build:
       context: .

@@ -9,6 +9,8 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_USER: mha
       MYSQL_PASSWORD: mh@4mysql
+    volumes:
+      - ./create_replication.sh:/docker-entrypoint-initdb.d/create_replication.sh:ro
   manager:
     build:
       context: .

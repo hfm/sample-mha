@@ -1,6 +1,7 @@
 FROM mysql:5.7
 
 RUN apt-get -qq update && apt-get install -y -qq --no-install-recommends libdbi-perl libdbd-mysql-perl
+RUN chown mysql:mysql /etc/mysql/conf.d
 COPY my.cnf /etc/mysql/conf.d/node.cnf
 
 COPY deb/*.deb /usr/local/src/

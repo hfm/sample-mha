@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  node:
+  node_master:
     build:
       context: .
       dockerfile: Dockerfile.node
@@ -10,8 +10,24 @@ services:
       MYSQL_USER: mha
       MYSQL_PASSWORD: mh@4mysql
     volumes:
+      - ./create_master.sh:/docker-entrypoint-initdb.d/create_master.sh:ro
+  node_slave:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_USER: mha
+      MYSQL_PASSWORD: mh@4mysql
+    volumes:
+      - ./create_master.sh:/docker-entrypoint-initdb.d/create_master.sh:ro
       - ./create_replication.sh:/docker-entrypoint-initdb.d/create_replication.sh:ro
+    depends_on:
+      - node_master
   manager:
     build:
       context: .
       dockerfile: Dockerfile.manager
+    depends_on:
+      - node_master
+      - node_slave

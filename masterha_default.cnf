@@ -13,10 +13,10 @@ repl_password=replic@ti0n
 #report_script=
 
 [server1]
-hostname=sample-mha_node_1
+hostname=node_master
 
 [server2]
-hostname=sample-mha_node_2
+hostname=sample-mha_node_slave_1
 
 [server3]
-hostname=sample-mha_node_3
+hostname=sample-mha_node_slave_2

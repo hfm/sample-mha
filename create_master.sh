@@ -9,7 +9,10 @@ EOS
 
 cat <<'EOS' | mysql -uroot
 CREATE USER 'repl'@'%' IDENTIFIED BY 'replic@ti0n';
-GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+GRANT SELECT, REPLICATION SLAVE ON *.* TO 'repl'@'%';
 
-GRANT SUPER, REPLICATION CLIENT ON *.* TO 'mha'@'%';
+GRANT RELOAD, SUPER ON *.* TO 'mha'@'%';
+GRANT SELECT ON `mysql`.* TO 'mha'@'%';
+GRANT ALL PRIVILEGES ON `mysql`.`apply_diff_relay_logs` TO 'mha'@'%';
+GRANT ALL PRIVILEGES ON `mysql`.`apply_diff_relay_logs_test` TO 'mha'@'%';
 EOS

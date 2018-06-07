@@ -21,7 +21,7 @@ services:
       MYSQL_PASSWORD: mh@4mysql
     volumes:
       - ./create_master.sh:/docker-entrypoint-initdb.d/create_master.sh:ro
-      - ./create_replication.sh:/docker-entrypoint-initdb.d/create_replication.sh:ro
+      - ./create_replication.sh:/usr/local/sbin/create_replication.sh:ro
     depends_on:
       - node_master
   manager:

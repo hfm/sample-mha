@@ -1,9 +1,12 @@
 FROM mysql:5.7
 
-RUN apt-get -qq update && apt-get install -y -qq --no-install-recommends libdbi-perl libdbd-mysql-perl
+RUN apt-get -qq update && apt-get install -y -qq --no-install-recommends libdbi-perl libdbd-mysql-perl openssh-server
+RUN mkdir /run/sshd
 RUN chown mysql:mysql /etc/mysql/conf.d
 COPY my.cnf /etc/mysql/conf.d/node.cnf
 
 COPY deb/*.deb /usr/local/src/
 RUN dpkg -i /usr/local/src/mha4mysql-node_0.58-0_all.deb
 COPY id_ecdsa* /root/.ssh/
+
+CMD /usr/sbin/sshd -D && mysqld

@@ -1,6 +1,6 @@
 FROM centos:7
 
-RUN yum install -y epel-release && yum install -y perl-Config-Tiny perl-DBD-mysql perl-Parallel-ForkManager perl-Log-Dispatch
+RUN yum install -y epel-release && yum install -y perl-Config-Tiny perl-DBD-mysql perl-Parallel-ForkManager perl-Log-Dispatch openssh-clients
 
 COPY rpm/*.rpm /usr/local/src/
 RUN rpm -i /usr/local/src/mha4mysql-node-0.58-0.el7.centos.noarch.rpm /usr/local/src/mha4mysql-manager-0.58-0.el7.centos.noarch.rpm
